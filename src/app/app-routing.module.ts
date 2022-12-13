@@ -19,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'upcoming-classes',
+    redirectTo: 'home',
   },
 ];
 

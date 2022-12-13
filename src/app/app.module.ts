@@ -10,6 +10,8 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { RequestInterceptor } from './interceptors/request.interceptor';
 import { LoadingService } from './loading-service.ts/loading-service';
 
+import { ComponentsModule } from './components/components.module';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,6 +20,7 @@ import { LoadingService } from './loading-service.ts/loading-service';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    ComponentsModule,
   ],
   providers: [
     LoadingService,
