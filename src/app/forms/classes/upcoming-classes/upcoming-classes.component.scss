@@ -1,0 +1,17 @@
+.unavailable {
+  background-color: red;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.available {
+  background-color: green;
+  border-radius: 50px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.mat-mdc-card-header{
+  padding: 16px 16px 16px;
+}
