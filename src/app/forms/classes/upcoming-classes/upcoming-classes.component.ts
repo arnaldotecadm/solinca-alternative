@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { ClassesService } from '../classees.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ClassesService } from '../classees.service';
 })
 export class UpcomingClassesComponent implements OnInit {
   classeList$!: Observable<any>;
+  allItemsOriginal: [] = <any>[];
 
   constructor(private service: ClassesService) {}
 
@@ -17,6 +18,15 @@ export class UpcomingClassesComponent implements OnInit {
   }
 
   loadData() {
-    this.classeList$ = this.service.getAllUpcomingClassesForUser(48)
+    this.classeList$ = this.service
+      .getAllUpcomingClassesForUser(48)
+      .pipe(tap((data: any) => (this.allItemsOriginal = data)));
+  }
+
+  filterData(className: string) {
+    const filteredData = this.allItemsOriginal.filter((item: any) =>
+      item.fullName.toUpperCase().includes(className.toUpperCase())
+    );
+    this.classeList$ = of(filteredData);
   }
 }
