@@ -15,11 +15,12 @@
               <mat-card-title-group>
                 <mat-card-title>{{ modality.name }}</mat-card-title>
                 <mat-card-subtitle>{{ modality.category }}</mat-card-subtitle>
-                <img
-                  class="card-image"
-                  mat-card-sm-image
-                  [src]="modality.photoUrl"
-                />
+                <a [href]="modality.photoUrl">
+                  <img
+                    class="card-image"
+                    mat-card-sm-image
+                    [src]="modality.photoUrl"
+                /></a>
               </mat-card-title-group>
             </mat-card-header>
             <mat-card-content>
