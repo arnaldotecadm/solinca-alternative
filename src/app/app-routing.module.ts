@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UpcomingClassesComponent } from './forms/classes/upcoming-classes/upcoming-classes.component';
 import { GymListComponent } from './forms/gym/gym-list/gym-list.component';
 import { HomeComponent } from './forms/home/home.component';
+import { ModalityComponent } from './forms/modality/modality.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'upcoming-classes',
     component: UpcomingClassesComponent,
+  },
+  {
+    path: 'modality',
+    component: ModalityComponent,
   },
   {
     path: '**',

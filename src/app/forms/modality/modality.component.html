@@ -1,0 +1,36 @@
+<div class="main-content mt-3">
+  <div class="container-fluid">
+    <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12">
+      <mat-card *ngIf="modalityList$ | async as modalityList">
+        <mat-card-header>
+          <mat-card-title>Lista de Modalidades</mat-card-title>
+          <mat-card-subtitle
+            >Lista de Todas as Modalidates disponíveis na Base de
+            Dados</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card class="example-card" *ngFor="let modality of modalityList">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title>{{ modality.name }}</mat-card-title>
+                <mat-card-subtitle>{{ modality.category }}</mat-card-subtitle>
+                <img
+                  class="card-image"
+                  mat-card-sm-image
+                  [src]="modality.photoUrl"
+                />
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <h5>Benefits</h5>
+              <p class="justify">{{ modality.benefits }}</p>
+              <h5>Description</h5>
+              <p class="justify">{{ modality.description }}</p>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
