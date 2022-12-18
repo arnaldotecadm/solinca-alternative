@@ -72,6 +72,21 @@
                   >
                 </div>
               </div>
+
+              <div class="row d-flex flex-row-reverse">
+                <button
+                  class="btn btn-success col-md-2"
+                  *ngIf="!class.alreadyBooked"
+                >
+                  Agendar Aula
+                </button>
+                <button
+                  class="btn btn-danger col-md-2"
+                  *ngIf="class.alreadyBooked"
+                >
+                  Cancelar Aula
+                </button>
+              </div>
             </mat-expansion-panel>
           </mat-accordion>
         </mat-card-content>

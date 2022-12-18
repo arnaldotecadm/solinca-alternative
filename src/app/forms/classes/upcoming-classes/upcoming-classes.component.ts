@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, tap } from 'rxjs';
-import { ClassesService } from '../classees.service';
+import { lastValueFrom, map, Observable, of, tap } from 'rxjs';
+import { ClassesService } from '../classes.service';
 
 @Component({
   selector: 'app-upcoming-classes',
@@ -17,9 +17,28 @@ export class UpcomingClassesComponent implements OnInit {
     this.loadData();
   }
 
-  loadData() {
+  async loadData() {
+    const bookedClasses = await lastValueFrom(
+      this.service.getAllBookedClasses()
+    );
+
     this.classeList$ = this.service
       .getAllUpcomingClassesForUser(48)
+      .pipe(
+        map((data: any[]) =>
+          data.map((upcoming) => ({
+            fullName: upcoming.fullName,
+            id: upcoming.id,
+            dateStart: upcoming.dateStart,
+            bookingId: upcoming.bookingId,
+            isAvailable: upcoming.isAvailable,
+            alreadyBooked:
+              bookedClasses.filter(
+                (item: any) => item.bookingId == upcoming.bookingId
+              ).length > 0,
+          }))
+        )
+      )
       .pipe(tap((data: any) => (this.allItemsOriginal = data)));
   }
 
