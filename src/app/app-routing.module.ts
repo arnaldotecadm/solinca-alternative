@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HistoryComponent } from './forms/classes/history/history.component';
 import { UpcomingClassesComponent } from './forms/classes/upcoming-classes/upcoming-classes.component';
 import { GymListComponent } from './forms/gym/gym-list/gym-list.component';
 import { HomeComponent } from './forms/home/home.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'modality',
     component: ModalityComponent,
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
   },
   {
     path: '**',

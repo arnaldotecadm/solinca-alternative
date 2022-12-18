@@ -13,7 +13,7 @@ const ROUTES = [
     icon: 'fitness_center',
     name: 'Gym List',
   },
-    {
+  {
     routerLink: 'modality',
     icon: 'sports_gymnastics',
     name: 'Modality List',
@@ -22,6 +22,11 @@ const ROUTES = [
     routerLink: 'upcoming-classes',
     icon: 'upcoming',
     name: 'Upcoming',
+  },
+  {
+    routerLink: 'history',
+    icon: 'history',
+    name: 'Histórico',
   },
 ];
 

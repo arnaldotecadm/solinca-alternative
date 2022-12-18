@@ -1,0 +1,40 @@
+<div class="main-content mt-3">
+  <div class="container-fluid">
+    <div class="col-xl-10 offset-xl-1 col-lg-10 offset-lg-1 col-md-12">
+      <mat-card *ngIf="historyList$ | async as historyList">
+        <mat-card-header>
+          <mat-card-title>Histórico de Aulas</mat-card-title>
+          <mat-card-subtitle
+            >Histórico de todas as aulas</mat-card-subtitle
+          >
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card class="example-card" *ngFor="let history of historyList">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title class="title">
+                  {{ history.className }}</mat-card-title
+                >
+              </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-3 label">Description</div>
+                <div class="col-md-3">
+                  {{ history.description }}
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 label">Data Check In</div>
+                <div class="col-md-3">
+                  {{ history.dateCheck | date : "dd/MM/yyyy HH:mm:ss" }}
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

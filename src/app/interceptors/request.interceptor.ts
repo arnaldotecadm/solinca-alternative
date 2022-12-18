@@ -29,7 +29,7 @@ export class RequestInterceptor implements HttpInterceptor {
   > {
     req = req.clone({
       setHeaders: {
-        token: '7b94358a0c884c93b717202fad6dfd92',
+        token: '053956b2b0cb4553910bea9ba780fea9',
       },
     });
 

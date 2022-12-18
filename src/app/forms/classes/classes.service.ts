@@ -22,4 +22,10 @@ export class ClassesService {
       .get(API + 'classes/booked')
       .pipe(map((data: any) => data.bookedClasses));
   }
+
+  getHistory() {
+    return this.http
+      .get(API + 'classes/history?dateStart=2022-01-01&dateEnd=2023-12-31')
+      .pipe(map((data: any) => data.historyClasses));
+  }
 }
