@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { lastValueFrom, map, Observable, of, tap } from 'rxjs';
+import { NotificationService } from 'src/app/shared/notification/notification.service';
 import { ClassesService } from '../classes.service';
 
 @Component({
@@ -11,7 +12,10 @@ export class UpcomingClassesComponent implements OnInit {
   classeList$!: Observable<any>;
   allItemsOriginal: [] = <any>[];
 
-  constructor(private service: ClassesService) {}
+  constructor(
+    private service: ClassesService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -29,6 +33,8 @@ export class UpcomingClassesComponent implements OnInit {
           data.map((upcoming) => ({
             fullName: upcoming.fullName,
             id: upcoming.id,
+            gymId: upcoming.gymId,
+            cancelId: upcoming.cancelId,
             dateStart: upcoming.dateStart,
             bookingId: upcoming.bookingId,
             isAvailable: upcoming.isAvailable,
@@ -47,5 +53,41 @@ export class UpcomingClassesComponent implements OnInit {
       item.fullName.toUpperCase().includes(className.toUpperCase())
     );
     this.classeList$ = of(filteredData);
+  }
+
+  bookClass(clazz: any) {
+    const classInfo = {
+      bookingId: clazz.bookingId,
+      gymId: clazz.gymId,
+      classDate: clazz.dateStart,
+    };
+    this.service.bookClass(classInfo).subscribe((data: any) => {
+      if (data.ok) {
+        this.notificationService.showInfo('Aula Agendada com sucesso');
+      } else {
+        this.notificationService.showInfo(
+          'Aula NÃO pode ser Agendada: ' + data.message
+        );
+      }
+      this.notificationService.showInfo(data);
+      this.loadData();
+    });
+  }
+
+  cancelClass(clazz: any) {
+    const classInfo = {
+      cancelId: clazz.cancelId,
+      gymId: clazz.gymId,
+    };
+    this.service.cancelClass(classInfo).subscribe((data: any) => {
+      if (data.ok) {
+        this.notificationService.showInfo('Aula cancelada com sucesso');
+      } else {
+        this.notificationService.showInfo(
+          'Aula NÃO pode ser Cancelada: ' + data.message
+        );
+      }
+      this.loadData();
+    });
   }
 }

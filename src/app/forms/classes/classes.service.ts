@@ -28,4 +28,12 @@ export class ClassesService {
       .get(API + 'classes/history?dateStart=2022-01-01&dateEnd=2023-12-31')
       .pipe(map((data: any) => data.historyClasses));
   }
+
+  bookClass(clazz: any) {
+    return this.http.post(API + 'classes/book', clazz);
+  }
+
+  cancelClass(clazz: any) {
+    return this.http.post(API + 'classes/cancel', clazz);
+  }
 }

@@ -76,13 +76,15 @@
               <div class="row d-flex flex-row-reverse">
                 <button
                   class="btn btn-success col-md-2"
-                  *ngIf="!class.alreadyBooked"
+                  *ngIf="!class.alreadyBooked && class.bookingId"
+                  (click)="bookClass(class)"
                 >
                   Agendar Aula
                 </button>
                 <button
                   class="btn btn-danger col-md-2"
                   *ngIf="class.alreadyBooked"
+                  (click)="cancelClass(class)"
                 >
                   Cancelar Aula
                 </button>
