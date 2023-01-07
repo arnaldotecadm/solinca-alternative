@@ -12,10 +12,11 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { TokenService } from '../components/auth/token.service';
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private tokenService: TokenService) {}
 
   intercept(
     req: HttpRequest<any>,
@@ -27,11 +28,14 @@ export class RequestInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
-    req = req.clone({
-      setHeaders: {
-        token: '7b94358a0c884c93b717202fad6dfd92',
-      },
-    });
+    if (this.tokenService.hasToken()) {
+      const token = '' + this.tokenService.getToken();
+      req = req.clone({
+        setHeaders: {
+          token: token,
+        },
+      });
+    }
 
     return next.handle(req).pipe(
       catchError((error) => {

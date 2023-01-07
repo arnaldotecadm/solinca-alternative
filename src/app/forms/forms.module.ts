@@ -8,15 +8,25 @@ import { HomeComponent } from './home/home.component';
 import { HomeModule } from './home/home.module';
 import { ModalityComponent } from './modality/modality.component';
 import { ModalityModule } from './modality/modality.module';
+import { SigninComponent } from './signin/signin.component';
+import { SigninModule } from './signin/signin.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, HomeModule, GymModule, ClassesModule, ModalityModule],
+  imports: [
+    CommonModule,
+    HomeModule,
+    GymModule,
+    ClassesModule,
+    ModalityModule,
+    SigninModule,
+  ],
   exports: [
     HomeComponent,
     GymListComponent,
     UpcomingClassesComponent,
     ModalityComponent,
+    SigninComponent,
   ],
 })
 export class FormsModule {}

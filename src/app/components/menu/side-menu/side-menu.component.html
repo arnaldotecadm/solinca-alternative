@@ -14,11 +14,11 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <img
       class="avatar mat-elevation-z8"
-      src="https://appapi.scfitness.ga/v1/users/images?token=7b94358a0c884c93b717202fad6dfd92"
+      src="https://appapi.scfitness.ga/v1/users/images?token={{token}}"
     />
 
-    <h4 class="name">Arnaldo Bezerra</h4>
-    <p class="designation">Software Engineer</p>
+    <h4 class="name">{{userInfo?.name}}</h4>
+    <p class="designation">{{userInfo?.email}}</p>
 
     <mat-divider></mat-divider>
 
@@ -31,6 +31,11 @@
     >
       <mat-icon>{{ item.icon }}</mat-icon>
       <span>{{ item.name }}</span>
+    </button>
+
+    <button mat-button class="menu-button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
     </button>
 
     <mat-divider></mat-divider>
