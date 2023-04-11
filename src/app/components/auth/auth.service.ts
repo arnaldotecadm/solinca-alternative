@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
+import { environment } from 'src/environments/environment';
 
-const context = '/';
+const API = environment.apiURL;
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,7 @@ export class AuthService {
 
   authenticate(username: string, password: string) {
     return this.http
-      .post('https://appapi.scfitness.ga/v1/session/login', {
+      .post(API + 'session/login', {
         email: username,
         password,
       })
